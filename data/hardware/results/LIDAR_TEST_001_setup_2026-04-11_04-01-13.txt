@@ -1,0 +1,5 @@
+Test: LIDAR_TEST_001_setup
+Component: RPLIDAR_A2M12
+Result: Fail
+Notes: Power issue. Maybe faulty data cable
+Time: 2026-04-11_04-01-13

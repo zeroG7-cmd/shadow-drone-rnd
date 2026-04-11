@@ -1,0 +1,5 @@
+Test: CAMERA_TEST_001_SETUP
+Component: RPI_OV5647
+Result: Pass
+Notes: Can open a live stream from source. delay anddisplay needs to be fixed
+Time: 2026-04-11_04-05-55
