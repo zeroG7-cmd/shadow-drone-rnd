@@ -1,0 +1,5 @@
+cv_env/
+venv/
+__pycache__/
+*.pyc
+database/shadow.db
