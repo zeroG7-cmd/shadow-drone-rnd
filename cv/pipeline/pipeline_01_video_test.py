@@ -1,6 +1,6 @@
 import cv2
 
-VIDEO_PATH = "../../data/simulation/camera/video.mov"
+VIDEO_PATH = "../../data/simulation/camera/Video.mov"
 
 cap = cv2.VideoCapture(VIDEO_PATH)
 
