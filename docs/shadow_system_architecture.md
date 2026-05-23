@@ -87,7 +87,7 @@ For example:
 ```text
 video file
     ↓
-fake drone stream
+simulated drone stream
     ↓
 OpenCV perception pipeline
     ↓
@@ -256,7 +256,7 @@ This means the current system is already simulating a simplified drone perceptio
 
 # Stream Simulation
 
-A fake drone stream system has already been developed.
+A simulated drone stream system has already been developed.
 
 Architecture:
 
