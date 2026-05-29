@@ -51,6 +51,11 @@ HARDWARE_RESULTS_DIR = os.path.join(DATA_DIR, "hardware", "results")
 
 source = input("Please enter source (simulation/hardware): ")
 
+if source not in ["simulation", "hardware"]:
+   print("Invalid source. Use 'simulation' or 'hardware'.")
+    exit()
+
+print("Selected source:", source)
 
 # -----------------------------
 # Database Functions
