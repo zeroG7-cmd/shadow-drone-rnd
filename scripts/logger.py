@@ -22,4 +22,18 @@ from datetime import datetime
 # -----------------------------
 # Paths / Configuration
 # -----------------------------
+SCRIPTS_DIR = os.path.dirname(__file__)
+BASE_DIR = os.path.dirname(SCRIPTS_DIR)
 
+DB_PATH = os.path.join(
+  BASE_DIR, 
+  "database", 
+  "shadow.db"
+  }
+
+DATA_DIR = os.path.join(BASE_DIR, "data")
+
+SIM_RESULTS_DIR
+HARDWARE_RESULTS_DIR
+
+  
