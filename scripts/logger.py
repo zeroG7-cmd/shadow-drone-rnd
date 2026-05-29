@@ -29,11 +29,51 @@ DB_PATH = os.path.join(
   BASE_DIR, 
   "database", 
   "shadow.db"
-  }
+)
 
 DATA_DIR = os.path.join(BASE_DIR, "data")
 
-SIM_RESULTS_DIR
-HARDWARE_RESULTS_DIR
+SIM_RESULTS_DIR = os.path.join(
+  DATA_DIR,
+  "simulation",
+  "results"
+)
+
+HARDWARE_RESULTS_DIR = os.path.join(
+  DATA_DIR,
+  "hardware",
+  "result"
+)
+
+# -----------------------------
+# Runtime Arguments / Inputs
+# -----------------------------
+
+
+
+# -----------------------------
+# Database Functions
+# -----------------------------
+
+
+
+
+# -----------------------------
+# Logging Functions
+# -----------------------------
+
+
+
+
+# -----------------------------
+# Export Functions
+# -----------------------------
+
+
+
+
+# -----------------------------
+# Main Runner
+# -----------------------------
 
   
