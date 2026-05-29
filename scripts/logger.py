@@ -22,33 +22,34 @@ from datetime import datetime
 # -----------------------------
 # Paths / Configuration
 # -----------------------------
+
+# Base
 SCRIPTS_DIR = os.path.dirname(__file__)
 BASE_DIR = os.path.dirname(SCRIPTS_DIR)
 
-DB_PATH = os.path.join(
-  BASE_DIR, 
-  "database", 
-  "shadow.db"
-)
+# Database
+DB_PATH = os.path.join(BASE_DIR, "database", "shadow.db")
 
+# Data
 DATA_DIR = os.path.join(BASE_DIR, "data")
 
-SIM_RESULTS_DIR = os.path.join(
-  DATA_DIR,
-  "simulation",
-  "results"
-)
+# Simulation
+SIM_BAGS_DIR = os.path.join(DATA_DIR, "simulation", "bags")
+SIM_CAMERA_DIR = os.path.join(DATA_DIR, "simulation", "camera")
+SIM_LOGS_DIR = os.path.join(DATA_DIR, "simulation", "logs")
+SIM_RESULTS_DIR = os.path.join(DATA_DIR, "simulation", "results")
 
-HARDWARE_RESULTS_DIR = os.path.join(
-  DATA_DIR,
-  "hardware",
-  "result"
-)
+# Hardware
+HARDWARE_BAGS_DIR = os.path.join(DATA_DIR, "hardware", "bags")
+HARDWARE_CAMERA_DIR = os.path.join(DATA_DIR, "hardware", "camera")
+HARDWARE_LOGS_DIR = os.path.join(DATA_DIR, "hardware", "logs")
+HARDWARE_RESULTS_DIR = os.path.join(DATA_DIR, "hardware", "results")
 
 # -----------------------------
 # Runtime Arguments / Inputs
 # -----------------------------
 
+source = input("Please enter source (simulation/hardware): ")
 
 
 # -----------------------------
