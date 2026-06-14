@@ -53,9 +53,57 @@ source = input("Please enter source (simulation/hardware): ")
 
 if source not in ["simulation", "hardware"]:
    print("Invalid source. Use 'simulation' or 'hardware'.")
-    exit()
+   exit()
 
 print("Selected source:", source)
+
+
+def connect_db():
+   conn = sqlite3.connect(DB_PATH)
+   reture conn
+
+def create_test_log_table():
+   conn = connect_db()
+   cursor = conn.curse()
+   
+   cursor.execute("""
+        INSERT INTO test_log (
+            test_name,
+            component,
+            result,
+            notes,
+            source,
+            timestamp
+        )
+        VALUES (?, ?, ?, ?, ?, ?)
+   """, ( 
+        test_name,
+        component,
+        result,
+        notes,
+        source,
+        timestamp
+    ))
+
+    conn.commit()
+    conn.close()
+
+    print("Test logged successfully.")
+
+      
+def create_telemtry_log_table():
+   conn = connect_db()
+   cursor = conn.cursor()
+
+   cursor.execute(
+
+
+
+
+def create_mission_log_table():
+
+
+def create_perception_log_table():   
 
 # -----------------------------
 # Database Functions
