@@ -197,10 +197,141 @@ def log_test(test_name, component, result, notes, source):
 
     print("Test logged successfully.")
 
-def 
+def telemetry_log(battery, altitude, speed, flight_mode):
+   timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")#
+
+   conn = connect_db()
+   cursor = conn.cursor()
+
+   cursor.exucute("""
+         INSERT INTO telemerty_log (
+            battery,
+            altitude,
+            speed,
+            flight_mode,
+            timestamp
+         )   
+           VALUES (?, ?, ?, ?, ?)
+    """, (
+        battery,
+        altitude,
+        speed,
+        flight_mode,
+        timestamp
+      ))
+
+    conn.commit()
+    conn.close()
+
+def telemetry_log(battery, altitude, speed, flight_mode):
+   timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")#
+
+   conn = connect_db()
+   cursor = conn.cursor()
+
+   cursor.exucute("""
+         INSERT INTO telemerty_log (
+            battery,
+            altitude,
+            speed,
+            flight_mode,
+            timestamp
+         )   
+           VALUES (?, ?, ?, ?, ?)
+    """, (
+        battery,
+        altitude,
+        speed,
+        flight_mode,
+        timestamp
+      ))
+
+    conn.commit()
+    conn.close()
 
 
 
+def mission_log(mission_name, start_time, end_time, ):
+   timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")#
+
+   conn = connect_db()
+   cursor = conn.cursor()
+
+   cursor.exucute("""
+         INSERT INTO telemerty_log (
+            mission_name,
+            start_time,
+            end_time,
+            result,
+            notes
+            timestamp
+         )   
+           VALUES (?, ?, ?, ?, ?)
+    """, (
+        mission_name,
+        start_time,
+        end_time,
+        result,
+        notes
+        timestamp
+      ))
+
+    conn.commit()
+    conn.close()
+
+
+def telemetry_log(battery, altitude, speed, flight_mode):
+   timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")#
+
+   conn = connect_db()
+   cursor = conn.cursor()
+
+   cursor.exucute("""
+         INSERT INTO telemerty_log (
+            battery,
+            altitude,
+            speed,
+            flight_mode,
+            timestamp
+         )   
+           VALUES (?, ?, ?, ?, ?)
+    """, (
+        battery,
+        altitude,
+        speed,
+        flight_mode,
+        timestamp
+      ))
+
+    conn.commit()
+    conn.close()
+
+
+def telemetry_log(battery, altitude, speed, flight_mode):
+   timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")#
+
+   conn = connect_db()
+   cursor = conn.cursor()
+
+   cursor.exucute("""
+         INSERT INTO telemerty_log (
+            battery,
+            altitude,
+            speed,
+            flight_mode,
+            timestamp
+         )   
+           VALUES (?, ?, ?, ?, ?)
+    """, (
+        battery,
+        altitude,
+        speed,
+        flight_mode,
+        timestamp
+      ))
+
+    conn.commit()
+    conn.close()
 # -----------------------------
 # Export Functions
 # -----------------------------
