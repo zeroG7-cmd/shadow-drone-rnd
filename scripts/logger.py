@@ -280,7 +280,7 @@ def mission_log(mission_name, start_time, end_time, ):
     conn.close()
 
 
-def telemetry_log(battery, altitude, speed, flight_mode):
+def perception_log(battery, altitude, speed, flight_mode):
    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")#
 
    conn = connect_db()
@@ -307,7 +307,7 @@ def telemetry_log(battery, altitude, speed, flight_mode):
     conn.close()
 
 
-def telemetry_log(battery, altitude, speed, flight_mode):
+def sensor_log(battery, altitude, speed, flight_mode):
    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")#
 
    conn = connect_db()
