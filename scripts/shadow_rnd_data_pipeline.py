@@ -1,5 +1,5 @@
 # --------------------------------------------------#
-# Shadow Robotics Logger System                     #
+# Shadow Robotics R&D Data Pipeline                 #
 #                                                   #
 # Author: Sidyfon Afangide                          #
 # Alias : Zer0                                      #
@@ -70,7 +70,7 @@ def create_test_logs_table():
    cursor = conn.cursor()
    
    cursor.execute("""
-        CREATE TABLE IF NOT EXISTS test_log (
+        CREATE TABLE IF NOT EXISTS test_logs (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             test_name TEXT,
             component TEXT,
@@ -91,7 +91,7 @@ def create_telemtry_logs_table():
    cursor = conn.cursor()
 
    cursor.execute(""" 
-        CREATE TABLE IF NOT EXISTS telemtry_log (
+        CREATE TABLE IF NOT EXISTS telemtry_logs (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             battery REAL,
             altitude REAL,
@@ -110,7 +110,7 @@ def create_mission_logs_table():
    cursor = conn.cursor()
    
    cursor.execute("""  
-        CREATE TABLE IF NOT EXISTS telemtry_log (
+        CREATE TABLE IF NOT EXISTS mission_logs (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             mission_name TEXT,
             start_time TEXT,
@@ -128,7 +128,7 @@ def create_perception_logs_table():
    cursor = conn.cursor()
 
    cursor.execute("""
-        CREATE TABLE IF NOT EXISTS perception_log (
+        CREATE TABLE IF NOT EXISTS perception_logs (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             object_name TEXT,
             confidence REAL,
@@ -145,7 +145,7 @@ def create_sensor_logs_table():
    cursor = conn.cursor()
 
    cursor.execute("""
-        CREATE TABLE IF NOT EXISTS sensor_log (
+        CREATE TABLE IF NOT EXISTS sensor_logs (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             sensor_name TEXT,
             status TEXT,
@@ -174,7 +174,7 @@ def log_test(test_name, component, result, notes, source):
     cursor = conn.cursor()
 
     cursor.execute("""
-         INSERT INTO test_log ( 
+         INSERT INTO test_logs ( 
             test_name,
             component,
             result,
@@ -197,40 +197,14 @@ def log_test(test_name, component, result, notes, source):
 
     print("Test logged successfully.")
 
-def telemetry_log(battery, altitude, speed, flight_mode):
-   timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")#
+def log_telemetry(battery, altitude, speed, flight_mode):
+   timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
    conn = connect_db()
    cursor = conn.cursor()
 
-   cursor.exucute("""
-         INSERT INTO telemerty_log (
-            battery,
-            altitude,
-            speed,
-            flight_mode,
-            timestamp
-         )   
-           VALUES (?, ?, ?, ?, ?)
-    """, (
-        battery,
-        altitude,
-        speed,
-        flight_mode,
-        timestamp
-      ))
-
-    conn.commit()
-    conn.close()
-
-def telemetry_log(battery, altitude, speed, flight_mode):
-   timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")#
-
-   conn = connect_db()
-   cursor = conn.cursor()
-
-   cursor.exucute("""
-         INSERT INTO telemerty_log (
+   cursor.execute("""
+         INSERT INTO telemetry_logs (
             battery,
             altitude,
             speed,
@@ -251,28 +225,29 @@ def telemetry_log(battery, altitude, speed, flight_mode):
 
 
 
-def mission_log(mission_name, start_time, end_time, ):
+
+def log_mission(mission_name, start_time, end_time, result, notes):
    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")#
 
    conn = connect_db()
    cursor = conn.cursor()
 
-   cursor.exucute("""
-         INSERT INTO telemerty_log (
+   cursor.execute("""
+         INSERT INTO mission_logs (
             mission_name,
             start_time,
             end_time,
             result,
-            notes
+            notes,
             timestamp
          )   
-           VALUES (?, ?, ?, ?, ?)
+           VALUES (?, ?, ?, ?, ?, ?)
     """, (
         mission_name,
         start_time,
         end_time,
         result,
-        notes
+        notes,
         timestamp
       ))
 
@@ -280,26 +255,24 @@ def mission_log(mission_name, start_time, end_time, ):
     conn.close()
 
 
-def perception_log(battery, altitude, speed, flight_mode):
+def log_perception(object_name, confidence, camera_source):
    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")#
 
    conn = connect_db()
    cursor = conn.cursor()
 
-   cursor.exucute("""
-         INSERT INTO telemerty_log (
-            battery,
-            altitude,
-            speed,
-            flight_mode,
-            timestamp
+   cursor.execute("""
+         INSERT INTO perception_logs (
+           object_name,
+           confidence,
+           camera_source,
+           timestamp
          )   
-           VALUES (?, ?, ?, ?, ?)
+           VALUES (?, ?, ?, ?)
     """, (
-        battery,
-        altitude,
-        speed,
-        flight_mode,
+        object_name,
+        confidence,
+        camera_source,
         timestamp
       ))
 
@@ -307,26 +280,24 @@ def perception_log(battery, altitude, speed, flight_mode):
     conn.close()
 
 
-def sensor_log(battery, altitude, speed, flight_mode):
+def log_sensor(sensor_name, status, value):
    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")#
 
    conn = connect_db()
    cursor = conn.cursor()
 
-   cursor.exucute("""
-         INSERT INTO telemerty_log (
-            battery,
-            altitude,
-            speed,
-            flight_mode,
+   cursor.execute("""
+         INSERT INTO sensor_logs (
+            sensor_name,
+            status,
+            value,
             timestamp
          )   
-           VALUES (?, ?, ?, ?, ?)
+           VALUES (?, ?, ?, ?)
     """, (
-        battery,
-        altitude,
-        speed,
-        flight_mode,
+        sensor_name,
+        status,
+        value,
         timestamp
       ))
 
