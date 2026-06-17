@@ -306,12 +306,77 @@ def log_sensor(sensor_name, status, value):
 # -----------------------------
 # Export Functions
 # -----------------------------
+def export_latest_test(source):
+    if source == "simulation":
+       export_dir = SIM_RESULTS_DIR
+elif source == "hardware":
+      export_dir = HARDWARE_RESULTS_DIR
+    else:
+        print("Invalid source for export.")
+        return
 
+     conn = connect_db()
+     cursor = conn.cursor()
 
+     cursor.execute("""
+         SELECT
+            id,
+            test_name,
+            component,
+            result,
+            notes,
+            source,
+            timestamp
+        FROM test_logs
+        WHERE source = ?
+        ORDER BY id DESC
+        LIMIT 1
+    """, (source,))
 
+     if row is None:
+        print("No test found to export.")
+        return
+
+    test_id, test_name, component, result, notes, source, timestamp = row
+
+    filename = f"latest_{source}_test.md"
+    export_path = os.path.join(export_dir, filename)
+
+    with open(export_path, "w") as file:
+        file.write("# Shadow Robotics Test Snapshot\n\n")
+        file.write(f"**Test ID:** {test_id}\n\n")
+        file.write(f"**Test Name:** {test_name}\n\n")
+        file.write(f"**Component:** {component}\n\n")
+        file.write(f"**Result:** {result}\n\n")
+        file.write(f"**Source:** {source}\n\n")
+        file.write(f"**Timestamp:** {timestamp}\n\n")
+        file.write("## Notes\n\n")
+        file.write(f"{notes}\n")
+
+    print(f"Snapshot exported to: {export_path}")
 
 # -----------------------------
 # Main Runner
 # -----------------------------
+def main():
+    setup_database()
+
+    source = input("Please enter source (simulation/hardware): ").strip().lower()
+
+    if source not in ["simulation", "hardware"]:
+        print("Invalid source. Use 'simulation' or 'hardware'.")
+        exit()
+
+    test_name = input("Test name: ")
+    component = input("Component: ")
+    result = input("Result (pass/fail): ")
+    notes = input("Notes: ")
+
+    log_test(test_name, component, result, notes, source)
+    export_latest_test(source)
+
+
+if __name__ == "__main__":
+    main()
 
   
