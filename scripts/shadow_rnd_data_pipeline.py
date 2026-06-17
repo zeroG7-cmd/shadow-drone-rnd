@@ -63,7 +63,7 @@ print("Selected source:", source)
 # -----------------------------
 def connect_db():
    conn = sqlite3.connect(DB_PATH)
-   reture conn
+   return conn
 
 def create_test_logs_table():
    conn = connect_db()
@@ -198,12 +198,12 @@ def log_test(test_name, component, result, notes, source):
     print("Test logged successfully.")
 
 def log_telemetry(battery, altitude, speed, flight_mode):
-   timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
-   conn = connect_db()
-   cursor = conn.cursor()
+    conn = connect_db()
+    cursor = conn.cursor()
 
-   cursor.execute("""
+    cursor.execute("""
          INSERT INTO telemetry_logs (
             battery,
             altitude,
@@ -251,8 +251,8 @@ def log_mission(mission_name, start_time, end_time, result, notes):
         timestamp
       ))
 
-    conn.commit()
-    conn.close()
+   conn.commit()
+   conn.close()
 
 
 def log_perception(object_name, confidence, camera_source):
@@ -276,8 +276,8 @@ def log_perception(object_name, confidence, camera_source):
         timestamp
       ))
 
-    conn.commit()
-    conn.close()
+   conn.commit()
+   conn.close()
 
 
 def log_sensor(sensor_name, status, value):
@@ -301,24 +301,24 @@ def log_sensor(sensor_name, status, value):
         timestamp
       ))
 
-    conn.commit()
-    conn.close()
+   conn.commit()
+   conn.close()
 # -----------------------------
 # Export Functions
 # -----------------------------
 def export_latest_test(source):
     if source == "simulation":
        export_dir = SIM_RESULTS_DIR
-elif source == "hardware":
+    elif source == "hardware":
       export_dir = HARDWARE_RESULTS_DIR
     else:
         print("Invalid source for export.")
         return
 
-     conn = connect_db()
-     cursor = conn.cursor()
+    conn = connect_db()
+    cursor = conn.cursor()
 
-     cursor.execute("""
+    cursor.execute("""
          SELECT
             id,
             test_name,
@@ -333,7 +333,7 @@ elif source == "hardware":
         LIMIT 1
     """, (source,))
 
-     if row is None:
+    if row is None:
         print("No test found to export.")
         return
 
