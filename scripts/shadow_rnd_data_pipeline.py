@@ -86,7 +86,7 @@ def create_test_logs_table():
     
 
       
-def create_telemtry_logs_table():
+def create_telemetry_logs_table():
    conn = connect_db()
    cursor = conn.cursor()
 
@@ -116,7 +116,9 @@ def create_mission_logs_table():
             start_time TEXT,
             end_time TEXT,
             result TEXT,
-            notes TEXT
+            notes TEXT,
+            timestamp TEXT
+
         )
    """) 
    conn.commit()
@@ -158,17 +160,13 @@ def create_sensor_logs_table():
 
 def setup_database():
     create_test_logs_table()
-    create_telemetry_logs_table()
-    create_mission_logs_table()
-    create_perception_logs_table()
-    create_sensor_logs_table()
    
 # -----------------------------
 # Logging Functions
 # -----------------------------
 
 def log_test(test_name, component, result, notes, source):
-    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")#
+    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
    
     conn = connect_db()
     cursor = conn.cursor()
@@ -227,7 +225,7 @@ def log_telemetry(battery, altitude, speed, flight_mode):
 
 
 def log_mission(mission_name, start_time, end_time, result, notes):
-   timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")#
+   timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
    conn = connect_db()
    cursor = conn.cursor()
@@ -256,7 +254,7 @@ def log_mission(mission_name, start_time, end_time, result, notes):
 
 
 def log_perception(object_name, confidence, camera_source):
-   timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")#
+   timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
    conn = connect_db()
    cursor = conn.cursor()
@@ -332,6 +330,8 @@ def export_latest_test(source):
         ORDER BY id DESC
         LIMIT 1
     """, (source,))
+
+    row = cursor.fetchone()
 
     if row is None:
         print("No test found to export.")
