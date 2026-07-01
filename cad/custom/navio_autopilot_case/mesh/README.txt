@@ -1,0 +1,4 @@
+Navio2 Autopilot case by mcancino on Thingiverse: https://www.thingiverse.com/thing:1659565
+
+Summary:
+After some time the case for Navio2 is ready!!Print both parts with the flat surface pointing to the bottom, using support material in the slot where the power, I2C, etc connectors go.Use 2 bottom and top layer. 2 perimeters and 20% infill.Use M2.5x8 Allen screws (recomended) to put everything together.UPDATE: Slot for RPi3 SD card easy removal. Retrofitting upper cap for PWM pins and base for available Damper platform (https://docs.emlid.com/navio2/Navio-APM/hardware-setup/)The cap and damper platform need to be glued to the main case. This is for allowing a minimum use of support material during the printing process and the possibility of retrofitting the parts for older cases.Enjoy!!PS: There is a new Beta version of the case, just designed an ready for testing. Feel free to try it. https://www.thingiverse.com/thing:3082337
